@@ -1,8 +1,9 @@
 package com.e.cancer_tect;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
 
 public class AnalysisActivity extends AppCompatActivity {
 

@@ -136,8 +136,6 @@ public class Camera {
 
     public Bitmap getPic(View view) {
 
-
-
         // Get the dimensions of the bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
         bmOptions.inJustDecodeBounds = true;

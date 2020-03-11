@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         // this here was to test to see if the camera would work.
 
         button = (Button) findViewById(R.id.Button);
-        imageView = (ImageView) findViewById(R.id.Image_view);
        final Context context = getApplicationContext();
        final Intent intent = getIntent();
         camera = new Camera(this, context);
@@ -36,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
             }//onClick
         });//OnClickListener
 
+    }
+
+    public void launchDoctorActivity(View view)
+    {
+        Intent intent = new Intent(this, DoctorActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cancer-Tect</string>
+    <string name="find_doctor">Find Doctors</string>
+    <string name="zip_prompt">Enter Zip Code:</string>
+    <string name="zip">Zip Code</string>
+    <string name="doctor_button">Search Doctors</string>
 </resources>

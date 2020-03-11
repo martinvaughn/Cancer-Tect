@@ -19,18 +19,11 @@
 
         />
 
-    <ImageView
-        android:id="@+id/Image_view"
-        android:layout_width="350dp"
-        android:layout_height="567dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:rotation="90" />
-
     <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:id="@+id/SearchDoctors"
+        android:layout_width="392dp"
         android:layout_height="wrap_content"
+        android:onClick="launchDoctorActivity"
+        android:text="@string/doctor_button" />
 
-        android:text="Button" />
 </LinearLayout>

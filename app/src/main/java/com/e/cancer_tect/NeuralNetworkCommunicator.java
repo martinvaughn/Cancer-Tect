@@ -55,7 +55,6 @@ public class NeuralNetworkCommunicator implements Runnable {
         try {
             Log.d("NeuralNetClass", "Starting NeuralNet");
             tflite = new Interpreter(loadModelFile(this.activity), tfliteOptions);
-            bitmap = BitmapFactory.decodeResource(activity.getResources(), R.drawable.test2);
 
             Log.d("NeuralNetClass", "Bitmap created.");
             Map<Integer, Object> output = new HashMap<>();
@@ -73,7 +72,7 @@ public class NeuralNetworkCommunicator implements Runnable {
             System.out.println(inputImage);
             Object[] inputs = {inputImage.getBuffer()};
             tflite.runForMultipleInputsOutputs(inputs, output);
-            float[][] a = (float[][]) output.get(0) ;
+            float[][] a = (float[][]) output.get(0);
 
             System.out.println(a[0][0]);
             if (a[0][0] == 0)
@@ -91,5 +90,40 @@ public class NeuralNetworkCommunicator implements Runnable {
     }
 
     // SENG WORK HERE PLEASE
+    private MappedByteBuffer loadModelFile(Activity activity) throws IOException {
+        Log.d("NeuralNetClass", "Starting LoadModel");
 
+        AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(MODEL_PATH);
+
+        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+
+        FileChannel fileChannel = inputStream.getChannel();
+        long startOffSet = fileDescriptor.getStartOffset();
+        long declaredLength = fileDescriptor.getDeclaredLength();
+
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffSet, declaredLength);
+    }
+
+
+    private Bitmap resizeBitmap(Bitmap image, int dimension) {
+        return Bitmap.createScaledBitmap(image, dimension, dimension, true);
+    }
+
+
+    private TensorImage loadImage(final Bitmap bitmap) {
+        // Loads bitmap into a TensorImage.
+        inputImage.load(bitmap);
+
+        //Creates processor for the TensorImage.
+        int cropSize = Math.min(bitmap.getWidth(), bitmap.getHeight());
+        ImageProcessor imageProcessor =
+                new ImageProcessor.Builder().add(new ResizeWithCropOrPadOp(cropSize, cropSize)).add(new ResizeOp(imageSizeX, imageSizeY, ResizeMethod.NEAREST_NEIGHBOR)).add(getPreprocessNormalizeOp()).build();
+
+        return imageProcessor.process(inputImage);
+
+    }
+
+    protected TensorOperator getPreprocessNormalizeOp() {
+        return new NormalizeOp(127.5f, 127.5f);
+    }
 }

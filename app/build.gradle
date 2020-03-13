@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.e.cancer_tect"
-        minSdkVersion 15
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -19,11 +19,14 @@ android {
     }
     aaptOptions {
         noCompress "tflite"
+        noCompress "lite"
     }
 }
 
 dependencies {
     implementation "org.tensorflow:tensorflow-lite:2.1.0"
+    implementation 'org.tensorflow:tensorflow-lite-support:0.0.0-nightly'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

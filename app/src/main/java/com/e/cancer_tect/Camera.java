@@ -41,8 +41,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.core.content.FileProvider;
 
@@ -52,8 +50,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Camera {
-
-
     private static final int REQUEST_TAKE_PHOTO = 1;
     private String currentPhotoPath;
     Activity activity;

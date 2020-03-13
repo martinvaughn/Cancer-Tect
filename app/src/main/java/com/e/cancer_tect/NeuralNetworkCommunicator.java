@@ -1,59 +1,95 @@
 package com.e.cancer_tect;
 
 import android.app.Activity;
-import android.content.res.AssetFileDescriptor;
+
 import android.graphics.Bitmap;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import org.tensorflow.lite.Interpreter;
+import org.tensorflow.lite.DataType;
+
+import org.tensorflow.lite.support.common.TensorOperator;
+
+import org.tensorflow.lite.support.common.ops.NormalizeOp;
+import org.tensorflow.lite.support.image.ImageProcessor;
+//import org.tensorflow.lite.support.image.TensorImage;
+import org.tensorflow.lite.support.image.TensorImage;
+import org.tensorflow.lite.support.image.ops.ResizeOp;
+import org.tensorflow.lite.support.image.ops.ResizeOp.ResizeMethod;
+import org.tensorflow.lite.support.image.ops.ResizeWithCropOrPadOp;
+//import org.tensorflow.lite.support.image.ops.Rot90Op;
+//import org.tensorflow.lite.support.label.TensorLabel;
+//import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.HashMap;
+
+import java.util.Map;
 
 
-public class NeuralNetworkCommunicator {
-    private Interpreter tflite = null;
-    private static final String MODEL_PATH = "v3_cancer_model.tfLite";
-    private Activity activity;
+public class NeuralNetworkCommunicator implements Runnable {
     private Bitmap bitmap;
+    private Interpreter tflite = null;
+    private static final String MODEL_PATH = "final_cancer_model.tflite";
     private int DIMEN = 50;
+    private Activity activity;
+    private final Interpreter.Options tfliteOptions = new Interpreter.Options();
+    private String analysis;
+    private TensorImage inputImage;
+    private int imageSizeX;
+    private int imageSizeY;
 
-    public NeuralNetworkCommunicator(Activity activity, Bitmap bitmap) {
-        this.activity = activity;
+
+    public NeuralNetworkCommunicator(Bitmap bitmap, Activity activity) {
         this.bitmap = bitmap;
-        runModel();
+        this.activity = activity;
     }
 
-    public void runModel() {
+    @Override
+    public void run() {
         try {
-            tflite = new Interpreter(loadModelFile(this.activity));
-        } catch (IOException e) {
+            Log.d("NeuralNetClass", "Starting NeuralNet");
+            tflite = new Interpreter(loadModelFile(this.activity), tfliteOptions);
+            bitmap = BitmapFactory.decodeResource(activity.getResources(), R.drawable.test2);
+
+            Log.d("NeuralNetClass", "Bitmap created.");
+            Map<Integer, Object> output = new HashMap<>();
+            output.put(0, new float[1][1]);
+
+            bitmap = resizeBitmap(bitmap, DIMEN);
+            int[] imageShape = tflite.getInputTensor(0).shape();
+            imageSizeY = imageShape[1];
+            imageSizeX = imageShape[2];
+            DataType imageDataType = tflite.getInputTensor(0).dataType();
+
+            inputImage = new TensorImage(imageDataType);
+            //System.out.println(inputImage);
+            inputImage = loadImage(bitmap);
+            System.out.println(inputImage);
+            Object[] inputs = {inputImage.getBuffer()};
+            tflite.runForMultipleInputsOutputs(inputs, output);
+            float[][] a = (float[][]) output.get(0) ;
+
+            System.out.println(a[0][0]);
+            if (a[0][0] == 0)
+                analysis = "Malignant";
+            else
+                analysis = "Benign";
+            System.out.println(analysis);
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        bitmap = resizeBitmap(bitmap, DIMEN);
-        //tflite.getOutputTensor;
+
+        tflite.close();
+        Log.d("NeuralNetClass", "NeuralNet Closed");
     }
 
-    private Bitmap resizeBitmap(Bitmap image , int dimension ) {
-        return Bitmap.createScaledBitmap( image , dimension , dimension , true ) ;
-    }
+    // SENG WORK HERE PLEASE
 
-    private MappedByteBuffer loadModelFile(Activity activity) throws IOException {
-        //////STORE IN APP ASSETS
-        AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(MODEL_PATH);
-        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
-        FileChannel fileChannel = inputStream.getChannel();
-        long startOffSet = fileDescriptor.getStartOffset();
-        long declaredLength = fileDescriptor.getDeclaredLength();
-
-        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffSet, declaredLength);
-        }
-
-    }
-    //print(interpreter.get_input_details()[0]['dtype'])
-
-            // Print output shape and type
-    //print(interpreter.get_output_details()[0]['shape'])
-    //print(interpreter.get_output_details()[0]['dtype'])
-
+}

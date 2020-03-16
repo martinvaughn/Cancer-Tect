@@ -41,8 +41,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.core.content.FileProvider;
 
@@ -56,8 +54,8 @@ public class Camera {
 
     private static final int REQUEST_TAKE_PHOTO = 1;
     private String currentPhotoPath;
-    Activity activity;
-    Context context;
+    private Activity activity;
+    private Context context;
 
 
     public Camera(Activity ac, Context con){
@@ -134,7 +132,7 @@ public class Camera {
      *
      * */
 
-    public Bitmap getPic(View view) {
+    public Bitmap getPic() {
 
         // Get the dimensions of the bitmap
         BitmapFactory.Options bmOptions = new BitmapFactory.Options();
@@ -154,5 +152,7 @@ public class Camera {
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
         return bitmap;
     }
+
+
 
 }

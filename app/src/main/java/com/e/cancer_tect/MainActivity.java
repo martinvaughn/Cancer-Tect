@@ -2,6 +2,7 @@ package com.e.cancer_tect;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,17 +25,19 @@ public class MainActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.Button);
         imageView = (ImageView) findViewById(R.id.Image_view);
-       final Context context = getApplicationContext();
-       final Intent intent = getIntent();
+        final Context context = getApplicationContext();
+        final Intent intent = getIntent();
         camera = new Camera(this, context);
 
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              camera.saveImage();
+                camera.saveImage();
             }//onClick
         });//OnClickListener
+
+        Bitmap bitmap = camera.getPic();
 
     }
 

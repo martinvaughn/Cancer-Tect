@@ -1,9 +1,14 @@
 package com.e.cancer_tect;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.FileInputStream;
 
 
 public class AnalysisActivity extends AppCompatActivity {
@@ -14,11 +19,29 @@ public class AnalysisActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis);
+        Intent intent = getIntent();
+
+        bitmap = null;
+        String filename = getIntent().getStringExtra("img");
+        try {
+            FileInputStream is = this.openFileInput(filename);
+            bitmap = BitmapFactory.decodeStream(is);
+            is.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         startNeuralNet();
     }
 
+    public void displayImage() {
+
+    }
+
     public void startNeuralNet() {
-        CNN = new NeuralNetworkCommunicator(AnalysisActivity.this, bitmap);
+        CNN = new NeuralNetworkCommunicator(bitmap, this);
+        Log.d("Analysis Activity", "Starting CNN Thread");
+        Thread t = new Thread(CNN);
+        t.start();
     }
 }
 

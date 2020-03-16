@@ -50,8 +50,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Camera {
-
-
     private static final int REQUEST_TAKE_PHOTO = 1;
     private String currentPhotoPath;
     private Activity activity;

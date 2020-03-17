@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     private ImageView imageView;
-    private Bitmap bitmap;
+    private Bitmap bitmap = null;
     Camera camera;
 
 
@@ -38,15 +38,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 camera.saveImage();
-                startAnalysis(v);
+
+                do {
+                    bitmap = camera.getPic(v);
+                }
+                while(bitmap == null);
+
+
+                System.out.println(bitmap.getWidth());
+                startAnalysis();
             }//onClick
         });//OnClickListener
     }
 
-        public void startAnalysis(View v) {
+    public void startAnalysis() {
             try {
                 String filename = "bitmap.png";
-                bitmap = camera.getPic(v);
                 FileOutputStream stream = this.openFileOutput(filename, Context.MODE_PRIVATE);
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 stream.close();

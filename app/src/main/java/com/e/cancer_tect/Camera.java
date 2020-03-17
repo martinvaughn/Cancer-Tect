@@ -150,5 +150,4 @@ public class Camera {
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
         return bitmap;
     }
-
 }

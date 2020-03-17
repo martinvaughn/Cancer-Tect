@@ -26,7 +26,7 @@ import java.util.Map;
 public class NeuralNetworkCommunicator implements Runnable {
     private Bitmap bitmap;
     private Interpreter tflite = null;
-    private static final String MODEL_PATH = "final_cancer_model.tflite";
+    private static final String MODEL_PATH = "final_cancer_model_2.tflite";
     private Activity activity;
     private final Interpreter.Options tfliteOptions = new Interpreter.Options();
     private TensorImage inputImage;

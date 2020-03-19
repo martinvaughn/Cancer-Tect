@@ -34,6 +34,7 @@ public class NeuralNetworkCommunicator implements Runnable {
     private int imageSizeY;
 
 
+    //Set bitmap and current activity as analysis activity.
     public NeuralNetworkCommunicator(Bitmap bitmap, Activity activity) {
         this.bitmap = bitmap;
         this.activity = activity;
@@ -43,48 +44,56 @@ public class NeuralNetworkCommunicator implements Runnable {
     public void run() {
         try {
             Log.d("NeuralNetClass", "Starting NeuralNet");
+            //Create a Tensorflow Interpreter.
             tflite = new Interpreter(loadModelFile(this.activity), tfliteOptions);
 
-            Log.d("NeuralNetClass", "Bitmap created.");
+            //Create a Map object capable of receiving an output from the Interpreter.
             @SuppressLint("UseSparseArrays") Map<Integer, Object> output = new HashMap<>();
+            //Create a map item with key "0".
             output.put(0, new float[1][1]);
 
-            int DIMEN = 50;
-            bitmap = resizeBitmap(bitmap, DIMEN);
+            int DIMEN = 50; //Photo should be 50px by 50px.
+            bitmap = resizeBitmap(bitmap, DIMEN); //Resize bitmap.
+
+            //Receive the needed image shape (in pixels) from the Interpreter.
             int[] imageShape = tflite.getInputTensor(0).shape();
-            imageSizeY = imageShape[1];
-            imageSizeX = imageShape[2];
+            imageSizeY = imageShape[1]; //50.
+            imageSizeX = imageShape[2]; //50.
+
+            //Retrieve the data type from the Interpreter.
             DataType imageDataType = tflite.getInputTensor(0).dataType();
 
+            //Create a Tensorflow Image, then fill it with our Bitmap.
             inputImage = new TensorImage(imageDataType);
             inputImage = loadImage(bitmap);
 
-
+            //Create an inputs object, readable by the Interpreter.
             Object[] inputs = {inputImage.getBuffer()};
-            tflite.runForMultipleInputsOutputs(inputs, output);
-            float[][] a = (float[][]) output.get(0);
 
+            //Run the Tensorflow model through the Interpreter. Saves prediction to the output map's 0 key.
+            tflite.runForMultipleInputsOutputs(inputs, output);
+
+            //Retrieve analysis from the output.
+            float[][] a = (float[][]) output.get(0);
             String analysis;
             if (a[0][0] == 0)
                 analysis = "Malignant";
             else
                 analysis = "Benign";
-            System.out.println(analysis);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        tflite.close();
+        tflite.close(); //close the interpreter after obtaining a prediction.
         Log.d("NeuralNetClass", "NeuralNet Closed");
     }
 
 
+    //loads the Neural Network File.
     private MappedByteBuffer loadModelFile(Activity activity) throws IOException {
-        Log.d("NeuralNetClass", "Starting LoadModel");
+        Log.d("NeuralNetClass", "Starting LoadModel method.");
 
         AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(MODEL_PATH);
-
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
 
         FileChannel fileChannel = inputStream.getChannel();
@@ -95,11 +104,12 @@ public class NeuralNetworkCommunicator implements Runnable {
     }
 
 
+    //Resize bitmap to desired dimensions.
     private Bitmap resizeBitmap(Bitmap image, int dimension) {
         return Bitmap.createScaledBitmap(image, dimension, dimension, true);
     }
 
-
+    //Load a bitmap object into a TensorImage object.
     private TensorImage loadImage(final Bitmap bitmap) {
         // Loads bitmap into a TensorImage.
         inputImage.load(bitmap);

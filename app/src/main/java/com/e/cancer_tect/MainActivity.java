@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // this here was to test to see if the camera would work.
-
-        button = (Button) findViewById(R.id.Button);
+        button = findViewById(R.id.Button);
         final Context context = getApplicationContext();
         final Intent intent = getIntent();
         camera = new Camera(this, context);
@@ -38,17 +37,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 camera.saveImage();
+            }
+        });
+    }
 
-                do {
-                    bitmap = camera.getPic(v);
-                }
-                while(bitmap == null);
-
-
-                System.out.println(bitmap.getWidth());
-                startAnalysis();
-            }//onClick
-        });//OnClickListener
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            bitmap = camera.getPic();
+            startAnalysis();
+        }
+        } catch (Exception ex) {
+            Toast.makeText(this, "Error Retrieving Image.",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void startAnalysis() {
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, AnalysisActivity.class);
                 intent.putExtra("img", filename);
 
-                Log.d("MainActivity", "Starting AnalysisActivity with the image");
+                Log.d("MainActivity", "Starting Analysis Activity with the image");
                 startActivity(intent);
 
             } catch (Exception e) {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +15,16 @@ import java.io.FileInputStream;
 public class AnalysisActivity extends AppCompatActivity {
     private NeuralNetworkCommunicator CNN;
     private Bitmap bitmap;
+    private String analysis;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis);
         Intent intent = getIntent();
-
         bitmap = null;
+
         String filename = getIntent().getStringExtra("img");
         try {
             FileInputStream is = this.openFileInput(filename);
@@ -30,13 +33,22 @@ public class AnalysisActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        startNeuralNet();
+
+        displayImage();
+
+        Log.d("Analysis Activity", "Starting Delay 4 Seconds");
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                startNeuralNet();
+            }
+        }, 4000);
     }
 
     public void displayImage() {
 
     }
 
+    //Run the CNN on a new Thread.
     public void startNeuralNet() {
         CNN = new NeuralNetworkCommunicator(bitmap, this);
         Log.d("Analysis Activity", "Starting CNN Thread");

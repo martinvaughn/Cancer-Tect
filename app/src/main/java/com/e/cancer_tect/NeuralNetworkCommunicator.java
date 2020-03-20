@@ -80,12 +80,14 @@ public class NeuralNetworkCommunicator implements Runnable {
                 analysis = "Malignant";
             else
                 analysis = "Benign";
+            Log.d("NeuralNetClass", "Diagnoses is: " + analysis);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         tflite.close(); //close the interpreter after obtaining a prediction.
         Log.d("NeuralNetClass", "NeuralNet Closed");
+
     }
 
 

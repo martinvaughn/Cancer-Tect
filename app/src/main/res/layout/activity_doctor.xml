@@ -10,36 +10,46 @@
         android:id="@+id/FindDoctor"
         android:layout_width="134dp"
         android:layout_height="50dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/acme"
         android:text="@string/find_doctor"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ZipPrompt" />
 
     <TextView
         android:id="@+id/ZipPrompt"
         android:layout_width="179dp"
         android:layout_height="49dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/acme"
         android:text="@string/zip_prompt"
+        android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.241"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/EnterZip"
+        app:layout_constraintEnd_toStartOf="@+id/EnterZip"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/EnterZip"
         android:layout_width="123dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="@string/zip"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.815"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ZipPrompt"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

@@ -43,6 +43,7 @@ public class NeuralNetworkCommunicator implements Runnable {
     @Override
     public void run() {
         try {
+            Thread.sleep(4000);
             Log.d("NeuralNetClass", "Starting NeuralNet");
             //Create a Tensorflow Interpreter.
             tflite = new Interpreter(loadModelFile(this.activity), tfliteOptions);
@@ -76,17 +77,26 @@ public class NeuralNetworkCommunicator implements Runnable {
             //Retrieve analysis from the output.
             float[][] a = (float[][]) output.get(0);
             String analysis;
+
             if (a[0][0] == 0)
                 analysis = "Malignant";
             else
                 analysis = "Benign";
             Log.d("NeuralNetClass", "Diagnoses is: " + analysis);
+
+            tflite.close(); //close the interpreter after obtaining a prediction.
+            Log.d("NeuralNetClass", "NeuralNet Closed");
+
+            //activity.runOnUiThread(new Runnable) {
+                        //Update AnalysisActivity's String analysis variable.
+                       //startPredictionActivity();
+                       //
+                       // setVisible..
+        //    }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        tflite.close(); //close the interpreter after obtaining a prediction.
-        Log.d("NeuralNetClass", "NeuralNet Closed");
 
     }
 

@@ -35,17 +35,12 @@ public class AnalysisActivity extends AppCompatActivity {
         }
 
         displayImage();
-
-        Log.d("Analysis Activity", "Starting Delay 4 Seconds");
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                startNeuralNet();
-            }
-        }, 4000);
+        startNeuralNet();
     }
 
     public void displayImage() {
-
+        //Seng Work On;
+        //display bitmap;
     }
 
     //Run the CNN on a new Thread.
@@ -55,6 +50,19 @@ public class AnalysisActivity extends AppCompatActivity {
         Thread t = new Thread(CNN);
         t.start();
     }
+
+    //function that starts PredictionActivity() {
+    //display button -> "the prediction is ready"
+    // user presses -> start prediction activity.
+    //Intent intent = new intent
+    //intent.putExtra("analysis", analysis);
+    //startactivity(PredictionActivity);
+    // }
+
+    //setPrediction(String prediction) {
+
+     // }
+
 }
 
 

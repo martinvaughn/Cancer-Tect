@@ -15,7 +15,7 @@ import java.io.FileInputStream;
 public class AnalysisActivity extends AppCompatActivity {
     private NeuralNetworkCommunicator CNN;
     private Bitmap bitmap;
-    private String analysis;
+    private String prediction;
     private Handler handler = new Handler();
 
     @Override
@@ -36,6 +36,8 @@ public class AnalysisActivity extends AppCompatActivity {
 
         displayImage();
         startNeuralNet();
+        //set button to invisible.
+        //load symbol is visible.
     }
 
     public void displayImage() {
@@ -51,6 +53,13 @@ public class AnalysisActivity extends AppCompatActivity {
         t.start();
     }
 
+
+
+    //setPrediction(String prediction) {this.prediction = prediction}
+    //setVisibility(bool True) { button.setVisible(); loadSymbol.setInvisible(); }
+    //advanceActivity { go forward when button clicked. }
+
+       // -----> do this in advanceActivity
     //function that starts PredictionActivity() {
     //display button -> "the prediction is ready"
     // user presses -> start prediction activity.
@@ -59,9 +68,6 @@ public class AnalysisActivity extends AppCompatActivity {
     //startactivity(PredictionActivity);
     // }
 
-    //setPrediction(String prediction) {
-
-     // }
 
 }
 

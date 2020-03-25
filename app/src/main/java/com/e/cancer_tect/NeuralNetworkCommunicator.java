@@ -87,11 +87,12 @@ public class NeuralNetworkCommunicator implements Runnable {
             tflite.close(); //close the interpreter after obtaining a prediction.
             Log.d("NeuralNetClass", "NeuralNet Closed");
 
+
             //activity.runOnUiThread(new Runnable) {
-                        //Update AnalysisActivity's String analysis variable.
-                       //startPredictionActivity();
-                       //
-                       // setVisible..
+
+                       // activity.setPrediction(analysis);
+                       // activity.setVisible(True);
+                       // activity.advanceActivity();
         //    }
 
         } catch (Exception e) {

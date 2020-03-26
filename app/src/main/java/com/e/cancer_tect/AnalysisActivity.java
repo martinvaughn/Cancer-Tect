@@ -23,9 +23,6 @@ public class AnalysisActivity extends AppCompatActivity {
 
     // Status Indicator variable to "Listen" to declared here
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

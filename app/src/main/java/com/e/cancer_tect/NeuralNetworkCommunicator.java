@@ -32,6 +32,7 @@ public class NeuralNetworkCommunicator implements Runnable {
     private TensorImage inputImage;
     private int imageSizeX;
     private int imageSizeY;
+//    private String analysis;
 
 
     //Set bitmap and current activity as analysis activity.
@@ -88,17 +89,25 @@ public class NeuralNetworkCommunicator implements Runnable {
             Log.d("NeuralNetClass", "NeuralNet Closed");
 
 
-            //activity.runOnUiThread(new Runnable) {
-
-                       // activity.setPrediction(analysis);
-                       // activity.setVisible(True);
-                       // activity.advanceActivity();
-        //    }
+//            activity.runOnUiThread(new Runnable) {
+//                activity.setPrediction(analysis);
+//                activity.setVisible(True);
+//                activity.advanceActivity();
+//            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public String getAnalysis() {
+        return analysis;
+    }
+
+    private String notifyActivityOfPrediction(Activity activity) {
+        // When the prediction has been made
+        //  Notify the parent (AnalysisActivity) that a prediction has been made
     }
 
 

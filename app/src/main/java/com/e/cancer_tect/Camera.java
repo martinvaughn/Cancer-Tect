@@ -8,6 +8,7 @@ package com.e.cancer_tect;
 * Author : Wyatt Nelson
 *
 * TODO:
+*
 *  1. Under res make new directory called "xml"
 *  2. in the new directory, make new xml called "file_paths.xml"
 *  3. paste " <?xml version="1.0" encoding="utf-8"?>
@@ -107,7 +108,7 @@ public class Camera {
         String imageFileName = "JPEG_" + timeStamp + "_";
 
         //todo WHAT WON'T THIS WORK
-        // File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        //File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File storageDir = activity.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 
         File image = File.createTempFile(

@@ -16,6 +16,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DoctorActivity extends AppCompatActivity {
 
@@ -50,5 +52,11 @@ public class DoctorActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         TextView textView = (TextView) findViewById(R.id.DoctorDisplay);
+        List<String> list = new ArrayList<String>();
+
+        //list.add(doctorInfo. something)
+
+       // for (doctorInfo DI : )
+
     }
 }

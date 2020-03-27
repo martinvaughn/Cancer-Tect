@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,7 @@ public class AnalysisActivity extends AppCompatActivity {
     private Bitmap bitmap;
     private String prediction;
     private Handler handler = new Handler();
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +32,21 @@ public class AnalysisActivity extends AppCompatActivity {
             FileInputStream is = this.openFileInput(filename);
             bitmap = BitmapFactory.decodeStream(is);
             is.close();
+            displayImage(bitmap);
+            startNeuralNet();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        displayImage();
-        startNeuralNet();
         //set button to invisible.
         //load symbol is visible.
     }
 
-    public void displayImage() {
+    public void displayImage(Bitmap bitmap) {
         //Seng Work On;
         //display bitmap;
+        imageView = (ImageView) findViewById(R.id.skinImage);
+        imageView.setImageBitmap(bitmap);
     }
 
     //Run the CNN on a new Thread.

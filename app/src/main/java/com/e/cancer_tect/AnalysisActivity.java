@@ -39,7 +39,7 @@ public class AnalysisActivity extends AppCompatActivity {
         }
 
         //set button to invisible.
-        //load symbol is visible.
+        //load symbol is visible. //debug
     }
 
     public void displayImage(Bitmap bitmap) {

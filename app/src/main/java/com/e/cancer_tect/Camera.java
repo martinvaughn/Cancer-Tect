@@ -61,7 +61,6 @@ public class Camera {
         context = con;
     }
 
-
     /*
      * saveImage
      *

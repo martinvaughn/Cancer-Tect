@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AnalysisActivity">
@@ -12,66 +11,61 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/acme"
         android:text="Your Image is Being Processed."
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/skinImage"
         android:layout_width="331dp"
         android:layout_height="107dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="352dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/acme"
         android:text="This Application uses Machine Learning Technologies to Analyze and Predict Whether or Not The Image Provided Contains Any Spots of Malignant Melonoma Skin Cancer. The Accuracy and Strength of this Model Relies Heavily on the Clarity and Angle Provided."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Header1"
-        app:layout_constraintVertical_bias="0.181" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <ImageView
-        android:id="@+id/skinImage"
-        android:layout_width="179dp"
-        android:layout_height="185dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/imageView2"
+        android:layout_width="160dp"
+        android:layout_height="169dp"
+        android:layout_marginTop="68dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.276"
-        tools:srcCompat="@tools:sample/avatars[0]" />
+        app:layout_constraintTop_toBottomOf="@+id/Header1"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="64dp"
         android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.696"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/skinImage"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="36dp"
         android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/skinImage"
-        app:layout_constraintVertical_bias="0.172" />
+        app:layout_constraintBottom_toTopOf="@+id/skinImage"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

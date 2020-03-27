@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +16,9 @@ import java.io.FileInputStream;
 public class AnalysisActivity extends AppCompatActivity {
     private NeuralNetworkCommunicator CNN;
     private Bitmap bitmap;
-    private ImageView imageView;
     private String prediction;
     private Handler handler = new Handler();
-
-    // Status Indicator variable to "Listen" to declared here
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +47,6 @@ public class AnalysisActivity extends AppCompatActivity {
     public void displayImage(Bitmap bitmap) {
         //Seng Work On;
         //display bitmap;
-        // Get the dimensions of the view
         imageView = (ImageView) findViewById(R.id.skinImage);
         imageView.setImageBitmap(bitmap);
     }
@@ -61,15 +57,7 @@ public class AnalysisActivity extends AppCompatActivity {
         Log.d("Analysis Activity", "Starting CNN Thread");
         Thread t = new Thread(CNN);
         t.start();
-
-        // There needs to be here a variable that the Status Indicator is "Listening" to
-        // Update this variable with the analysis from the Neural Net
-//        CNN.getAnalysis();
-
-        // How do we know from the CNN class when the Analysis has been made?
     }
-
-
 
 
 

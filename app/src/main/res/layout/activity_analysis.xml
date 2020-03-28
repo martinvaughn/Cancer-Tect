@@ -59,7 +59,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.597" />
+        app:layout_constraintVertical_bias="0.718" />
 
     <ImageView
         android:id="@+id/loading"
@@ -68,11 +68,11 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637"
-        app:srcCompat="@drawable/loading" />
+        app:layout_constraintVertical_bias="0.645"
+        app:srcCompat="@drawable/loadingtransparent" />
 
     <TextView
         android:id="@+id/loadingText"

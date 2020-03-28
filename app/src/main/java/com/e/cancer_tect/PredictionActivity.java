@@ -17,10 +17,7 @@ public class PredictionActivity extends AppCompatActivity {
         //get analysis from the intent;
         Intent intent = getIntent();
         String prediction = intent.getStringExtra("Prediction");
-
-
         if (prediction != null) {
-
             if (prediction.equals("Benign")) {
                 TextView noCancer = findViewById(R.id.noCancer);
                 noCancer.setVisibility(View.VISIBLE);

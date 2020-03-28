@@ -7,7 +7,7 @@
     tools:context=".PredictionActivity">
 
     <TextView
-        android:id="@+id/result"
+        android:id="@+id/cancer"
         android:layout_width="141dp"
         android:layout_height="88dp"
         android:text="You have Cancer "
@@ -16,10 +16,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
         app:layout_constraintVertical_bias="0.461" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/noCancer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="You don't have Cancer"
@@ -27,6 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
         app:layout_constraintVertical_bias="0.341" />
 
     <Button

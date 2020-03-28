@@ -41,6 +41,7 @@
         android:id="@+id/skinImage"
         android:layout_width="197dp"
         android:layout_height="194dp"
+        android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

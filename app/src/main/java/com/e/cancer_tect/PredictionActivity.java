@@ -22,7 +22,7 @@ public class PredictionActivity extends AppCompatActivity {
         prediction = intent.getStringExtra("analysis");
 
 
-        if (prediction == "Malignant") {
+        if (prediction == "Benign") {
             TextView noCancer = (TextView)findViewById(R.id.noCancer);
             noCancer.setVisibility(View.VISIBLE);
         } else {

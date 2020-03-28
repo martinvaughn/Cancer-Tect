@@ -13,28 +13,29 @@
         android:layout_width="307dp"
         android:layout_height="157dp"
         android:text="@string/you_have_cancer"
-        android:textSize="30sp"
+        android:textSize="15sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.439"
+        app:layout_constraintVertical_bias="0.677"
         tools:text="According to our prediction model, it is highly likely that the spot of skin presented is MALIGNANT, or cancerous." />
 
     <Button
         android:id="@+id/doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="launchDoctorActivity"
+        android:backgroundTint="#F64F3F"
+        android:onClick="findDoctor"
         android:text="@string/look_for_a_doctor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.617" />
+        app:layout_constraintVertical_bias="0.814" />
 
     <TextView
         android:id="@+id/noCancer"
@@ -42,12 +43,25 @@
         android:layout_height="175dp"
         android:layout_marginTop="36dp"
         android:text="According to our prediction model, it is highly likely that the spot of skin presented is BENIGN, or non-cancerous."
+        android:textSize="15sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.348" />
+        app:layout_constraintVertical_bias="0.644" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="234dp"
+        android:layout_height="195dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.141"
+        app:srcCompat="@drawable/cancerlogo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

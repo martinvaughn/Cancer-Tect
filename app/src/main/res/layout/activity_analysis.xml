@@ -15,13 +15,15 @@
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/acme"
         android:text="Your Image is Being Processed."
-        android:textColor="#000000"
+        android:textColor="#00699B"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintVertical_bias="0.048"
+
+        />
 
     <TextView
         android:id="@+id/Explain"
@@ -30,7 +32,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/acme"
-        android:text="This Application uses Machine Learning Technologies to Analyze and Predict Whether or Not The Image Provided Contains Any Spots of Malignant Melonoma Skin Cancer. The Accuracy and Strength of this Model Relies Heavily on the Clarity and Angle Provided."
+        android:text="This App uses Machine Learning Technologies to Predict if a certain image contains any signs of Melonoma Skin Cancer. The Accuracy of this Model Relies Heavily on the Clarity of a given Image. Your prediction will be ready Shortly."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +55,7 @@
         android:id="@+id/startP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#F64F3F"
         android:onClick="startPrediction"
         android:text="Continue"
         android:visibility="invisible"
@@ -60,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.718" />
+        app:layout_constraintVertical_bias="0.609" />
 
     <ImageView
         android:id="@+id/loading"

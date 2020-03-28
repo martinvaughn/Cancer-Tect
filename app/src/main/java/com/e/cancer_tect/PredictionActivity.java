@@ -33,8 +33,8 @@ public class PredictionActivity extends AppCompatActivity {
 
     }
 
-    public void launchDoctorActivity(View view)
-    {
+
+    public void findDoctor(View view) {
         Intent intent = new Intent(this, DoctorActivity.class);
         startActivity(intent);
     }

@@ -27,6 +27,7 @@
         android:id="@+id/doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="launchDoctorActivity"
         android:text="@string/look_for_a_doctor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

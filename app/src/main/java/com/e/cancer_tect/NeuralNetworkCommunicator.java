@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.view.View;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
@@ -27,7 +28,7 @@ public class NeuralNetworkCommunicator implements Runnable {
     private Bitmap bitmap;
     private Interpreter tflite = null;
     private static final String MODEL_PATH = "final_cancer_model_2.tflite";
-    private Activity activity;
+    private AnalysisActivity AnalysisActivity;
     private final Interpreter.Options tfliteOptions = new Interpreter.Options();
     private TensorImage inputImage;
     private int imageSizeX;
@@ -35,9 +36,9 @@ public class NeuralNetworkCommunicator implements Runnable {
 
 
     //Set bitmap and current activity as analysis activity.
-    public NeuralNetworkCommunicator(Bitmap bitmap, Activity activity) {
+    public NeuralNetworkCommunicator(Bitmap bitmap, AnalysisActivity AnalysisActivity) {
         this.bitmap = bitmap;
-        this.activity = activity;
+        this.AnalysisActivity = AnalysisActivity;
     }
 
     @Override
@@ -46,7 +47,7 @@ public class NeuralNetworkCommunicator implements Runnable {
             Thread.sleep(4000);
             Log.d("NeuralNetClass", "Starting NeuralNet");
             //Create a Tensorflow Interpreter.
-            tflite = new Interpreter(loadModelFile(this.activity), tfliteOptions);
+            tflite = new Interpreter(loadModelFile(this.AnalysisActivity), tfliteOptions);
 
             //Create a Map object capable of receiving an output from the Interpreter.
             @SuppressLint("UseSparseArrays") Map<Integer, Object> output = new HashMap<>();
@@ -76,7 +77,7 @@ public class NeuralNetworkCommunicator implements Runnable {
 
             //Retrieve analysis from the output.
             float[][] a = (float[][]) output.get(0);
-            String analysis;
+            final String analysis;
 
             if (a[0][0] == 0)
                 analysis = "Malignant";
@@ -88,12 +89,12 @@ public class NeuralNetworkCommunicator implements Runnable {
             Log.d("NeuralNetClass", "NeuralNet Closed");
 
 
-            //activity.runOnUiThread(new Runnable) {
-
-                       // activity.setPrediction(analysis);
-                       // activity.setVisible(True);
-                       // activity.advanceActivity();
-        //    }
+            AnalysisActivity.runOnUiThread(new Runnable() {
+                public void run() {
+                     AnalysisActivity.setPrediction(analysis);
+                     AnalysisActivity.setVisibility();
+                }
+            });
 
         } catch (Exception e) {
             e.printStackTrace();

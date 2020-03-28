@@ -16,6 +16,5 @@ public class PredictionActivity extends AppCompatActivity {
         //String prediction = intent.getStringExtra("analysis");
     }
 
-
     //display analysis -> System.out(prediction);
 }

@@ -6,7 +6,10 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -57,6 +60,25 @@ public class AnalysisActivity extends AppCompatActivity {
         t.start();
     }
 
+    public void setPrediction(String prediction) {
+        this.prediction = prediction;
+    }
+
+    public void setVisibility() {
+        // change loading and button loading is not visible and button is visible
+        ImageView loadingIcon = (ImageView)findViewById(R.id.loading);
+        TextView loadingText = (TextView)findViewById(R.id.loadingText);
+        Button startP = findViewById(R.id.startP);
+        loadingIcon.setVisibility(View.GONE);
+        loadingText.setVisibility(View.GONE);
+        startP.setVisibility(View.VISIBLE);
+    }
+
+    public void startPrediction(View view) {
+        Intent intent = new Intent(this, PredictionActivity.class);
+        intent.putExtra("Prediction", prediction);
+        startActivity(intent);
+    }
 
 
     //setPrediction(String prediction) {this.prediction = prediction}

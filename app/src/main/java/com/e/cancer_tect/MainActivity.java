@@ -3,6 +3,7 @@ package com.e.cancer_tect;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -71,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchDoctorActivity(View view)
     {
-        Intent intent = new Intent(this, DoctorActivity.class);
-        startActivity(intent);
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=cancer");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 
 }

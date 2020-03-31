@@ -28,20 +28,25 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.Button);
         final Context context = getApplicationContext();
         camera = new Camera(this, context);
+        // when the taken picture buttom is pressed
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // camera will take picture
                 camera.saveImage();
             }
         });
     }
 
+
+    // camera.saveImage() uses startActivityForResult which in turn calls this function.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         try {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             bitmap = camera.getPic();
+
             startAnalysis();
         }
         } catch (Exception ex) {

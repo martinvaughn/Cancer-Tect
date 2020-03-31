@@ -63,7 +63,7 @@ public class Camera {
     /*
      * saveImage
      *
-     * This will
+     * This will open the Camera Activity, take a picture and save it to a file.
      * */
     public void saveImage(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -89,6 +89,7 @@ public class Camera {
             }//if
         }//if
     }//saveImage
+
 
     /*
      * createImageFile()
@@ -147,7 +148,5 @@ public class Camera {
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
         return bitmap;
     }
-
-
 
 }

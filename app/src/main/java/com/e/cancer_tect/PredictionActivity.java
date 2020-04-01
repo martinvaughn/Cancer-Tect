@@ -1,6 +1,7 @@
 package com.e.cancer_tect;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,7 +38,9 @@ public class PredictionActivity extends AppCompatActivity {
     }
 
     public void findDoctor(View view) {
-        Intent intent = new Intent(this, DoctorActivity.class);
-        startActivity(intent);
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=cancer");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 }

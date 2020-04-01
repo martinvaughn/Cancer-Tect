@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">Cancer-Tect</string>
     <string name="find_doctor">Find Doctors</string>
-    <string name="zip_prompt">Enter Zip Code:</string>
-    <string name="zip">Zip Code</string>
-    <string name="doctor_button">Search Doctors</string>
     <string name="look_for_a_doctor">Look for a Doctor</string>
+    <string name="doctor_button">Search Doctors</string>
     <string name="you_don_t_have_cancer">You don\'t have Cancer</string>
     <string name="you_have_cancer">According to our prediction model, it is highly likely that the spot of skin presented is MALIGNANT, or cancerous.</string>
 </resources>

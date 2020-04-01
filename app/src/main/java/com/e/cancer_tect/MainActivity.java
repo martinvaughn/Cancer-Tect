@@ -5,20 +5,26 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
+    private Button button2;
     private Bitmap bitmap = null;
     Camera camera;
+    Gallery gallery;
+    private ImageView ivImage;
 
 
     @Override
@@ -27,15 +33,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         button = findViewById(R.id.Button);
+        button2 = findViewById(R.id.Button2);
         final Context context = getApplicationContext();
         camera = new Camera(this, context);
+        gallery = new Gallery(this, context);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 camera.saveImage(); //this was changed
-                Intent intent = new Intent(MainActivity.this, CameraOptions.class);
-                startActivity(intent);
+
             }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gallery.createGalleryIntent();
+            }
+
         });
     }
 
@@ -47,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
             bitmap = camera.getPic();
             startAnalysis();
         }
+
+        if(requestCode == 2 && resultCode == RESULT_OK) {
+            openGallery(data);
+        }
+
         } catch (Exception ex) {
             Toast.makeText(this, "Error Retrieving Image.",
                     Toast.LENGTH_SHORT).show();
@@ -85,4 +106,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openGallery(Intent data) {
+        if (data != null) {
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        ivImage.setImageBitmap(bitmap);
+    }
 }

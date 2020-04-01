@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +16,8 @@ import java.io.FileInputStream;
 
 
 public class AnalysisActivity extends AppCompatActivity {
-    private NeuralNetworkCommunicator CNN;
     private Bitmap bitmap;
     private String prediction;
-    private Handler handler = new Handler();
-    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +26,7 @@ public class AnalysisActivity extends AppCompatActivity {
         Intent intent = getIntent();
         bitmap = null;
 
-        String filename = getIntent().getStringExtra("img");
+        String filename = intent.getStringExtra("img");
         try {
             FileInputStream is = this.openFileInput(filename);
             bitmap = BitmapFactory.decodeStream(is);
@@ -40,21 +36,16 @@ public class AnalysisActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        //set button to invisible.
-        //load symbol is visible. //debug
     }
 
     public void displayImage(Bitmap bitmap) {
-        //Seng Work On;
-        //display bitmap;
-        imageView = (ImageView) findViewById(R.id.skinImage);
+        ImageView imageView = findViewById(R.id.skinImage);
         imageView.setImageBitmap(bitmap);
     }
 
     //Run the CNN on a new Thread.
     public void startNeuralNet() {
-        CNN = new NeuralNetworkCommunicator(bitmap, this);
+        NeuralNetworkCommunicator CNN = new NeuralNetworkCommunicator(bitmap, this);
         Log.d("Analysis Activity", "Starting CNN Thread");
         Thread t = new Thread(CNN);
         t.start();
@@ -66,8 +57,8 @@ public class AnalysisActivity extends AppCompatActivity {
 
     public void setVisibility() {
         // change loading and button loading is not visible and button is visible
-        ImageView loadingIcon = (ImageView)findViewById(R.id.loading);
-        TextView loadingText = (TextView)findViewById(R.id.loadingText);
+        ImageView loadingIcon = findViewById(R.id.loading);
+        TextView loadingText = findViewById(R.id.loadingText);
         Button startP = findViewById(R.id.startP);
         loadingIcon.setVisibility(View.GONE);
         loadingText.setVisibility(View.GONE);
@@ -79,23 +70,8 @@ public class AnalysisActivity extends AppCompatActivity {
         intent.putExtra("Prediction", prediction);
         startActivity(intent);
     }
-
-
-    //setPrediction(String prediction) {this.prediction = prediction}
-    //setVisibility(bool True) { button.setVisible(); loadSymbol.setInvisible(); }
-    //advanceActivity { go forward when button clicked. }
-
-       // -----> do this in advanceActivity
-    //function that starts PredictionActivity() {
-    //display button -> "the prediction is ready"
-    // user presses -> start prediction activity.
-    //Intent intent = new intent
-    //intent.putExtra("analysis", analysis);
-    //startactivity(PredictionActivity);
-    // }
-
-
 }
+
 
 
 /*************************************
@@ -114,3 +90,4 @@ public class AnalysisActivity extends AppCompatActivity {
  input[batchNum][x][y][1] = (Color.green(pixel) - 127) / 128.0f;
  input[batchNum][x][y][2] = (Color.blue(pixel) - 127) / 128.0f;
  *********************************************/
+

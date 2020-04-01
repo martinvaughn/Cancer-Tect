@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
 import android.util.Log;
-import android.view.View;
 
 import org.tensorflow.lite.DataType;
 import org.tensorflow.lite.Interpreter;
@@ -26,7 +25,6 @@ import java.util.Map;
 
 public class NeuralNetworkCommunicator implements Runnable {
     private Bitmap bitmap;
-    private Interpreter tflite = null;
     private static final String MODEL_PATH = "final_cancer_model_2.tflite";
     private AnalysisActivity AnalysisActivity;
     private final Interpreter.Options tfliteOptions = new Interpreter.Options();
@@ -47,7 +45,7 @@ public class NeuralNetworkCommunicator implements Runnable {
             Thread.sleep(4000);
             Log.d("NeuralNetClass", "Starting NeuralNet");
             //Create a Tensorflow Interpreter.
-            tflite = new Interpreter(loadModelFile(this.AnalysisActivity), tfliteOptions);
+            Interpreter tflite = new Interpreter(loadModelFile(this.AnalysisActivity), tfliteOptions);
 
             //Create a Map object capable of receiving an output from the Interpreter.
             @SuppressLint("UseSparseArrays") Map<Integer, Object> output = new HashMap<>();

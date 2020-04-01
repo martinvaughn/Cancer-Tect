@@ -1,27 +1,22 @@
 package com.e.cancer_tect;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
-    private ImageView imageView;
     private Bitmap bitmap = null;
     Camera camera;
 
@@ -33,10 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         button = findViewById(R.id.Button);
         final Context context = getApplicationContext();
-        final Intent intent = getIntent();
         camera = new Camera(this, context);
-
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,8 +74,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchDoctorActivity(View view)
     {
-        Intent intent = new Intent(this, DoctorActivity.class);
-        startActivity(intent);
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=cancer");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 
     public void options(View view){

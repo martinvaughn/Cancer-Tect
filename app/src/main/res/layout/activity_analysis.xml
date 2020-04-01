@@ -8,20 +8,22 @@
 
     <TextView
         android:id="@+id/Header1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="295dp"
+        android:layout_height="38dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/acme"
         android:text="Your Image is Being Processed."
-        android:textColor="#000000"
+        android:textColor="#00699B"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048" />
+        app:layout_constraintVertical_bias="0.0"
+
+        />
 
     <TextView
         android:id="@+id/Explain"
@@ -30,28 +32,31 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/acme"
-        android:text="This Application uses Machine Learning Technologies to Analyze and Predict Whether or Not The Image Provided Contains Any Spots of Malignant Melonoma Skin Cancer. The Accuracy and Strength of this Model Relies Heavily on the Clarity and Angle Provided."
+        android:text="This App uses Machine Learning Technologies to Predict if a certain image contains any signs of Melonoma Skin Cancer. The Accuracy of this Model Relies Heavily on the Clarity of a given Image. Your prediction will be ready Shortly."
+        android:textColor="#00699B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.958" />
+        app:layout_constraintVertical_bias="0.974" />
 
     <ImageView
         android:id="@+id/skinImage"
-        android:layout_width="197dp"
-        android:layout_height="194dp"
+        android:layout_width="243dp"
+        android:layout_height="297dp"
+        android:rotation="90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.299"
+        app:layout_constraintVertical_bias="0.211"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/startP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#F64F3F"
         android:onClick="startPrediction"
         android:text="Continue"
         android:visibility="invisible"
@@ -59,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.597" />
+        app:layout_constraintVertical_bias="0.705" />
 
     <ImageView
         android:id="@+id/loading"
@@ -68,23 +73,24 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637"
-        app:srcCompat="@drawable/loading" />
+        app:layout_constraintVertical_bias="0.706"
+        app:srcCompat="@drawable/loading2" />
 
     <TextView
         android:id="@+id/loadingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Loading..."
+        android:textColor="#00699B"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.742" />
+        app:layout_constraintVertical_bias="0.768" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

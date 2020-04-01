@@ -15,7 +15,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DoctorActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -27,10 +26,15 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".PredictionActivity" />
-        <activity android:name=".CameraOptions" />
-        <activity android:name=".AnalysisActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".PredictionActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AnalysisActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

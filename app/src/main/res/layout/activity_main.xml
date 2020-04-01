@@ -12,7 +12,7 @@
 
     <Button
         android:id="@+id/Button"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#00699B"
@@ -70,7 +70,7 @@
 
     <Button
         android:id="@+id/Button2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#00699B"
         android:fontFamily="@font/acme"

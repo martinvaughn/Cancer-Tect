@@ -28,6 +28,7 @@
         </provider>
 
         <activity android:name=".PredictionActivity" />
+        <activity android:name=".CameraOptions" />
         <activity android:name=".AnalysisActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -40,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                camera.saveImage();
+                camera.saveImage(); //this was changed
+                Intent intent = new Intent(MainActivity.this, CameraOptions.class);
+                startActivity(intent);
             }
         });
     }
@@ -82,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(this, DoctorActivity.class);
         startActivity(intent);
+    }
+
+    public void options(View view){
+
+
     }
 
 }

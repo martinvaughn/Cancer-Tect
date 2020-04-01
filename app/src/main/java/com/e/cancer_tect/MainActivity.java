@@ -9,7 +9,6 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap bitmap = null;
     Camera camera;
     Gallery gallery;
-    private ImageView ivImage;
 
 
     @Override
@@ -66,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == 2 && resultCode == RESULT_OK) {
             openGallery(data);
+            startAnalysis();
         }
 
         } catch (Exception ex) {
@@ -107,14 +106,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openGallery(Intent data) {
-        if (data != null) {
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(), data.getData());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        Uri filePath = data.getData();
 
-        ivImage.setImageBitmap(bitmap);
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+            Log.d("Main Activity: ", "Bitmap created: " + bitmap);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

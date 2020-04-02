@@ -21,12 +21,14 @@ public class PredictionActivity extends AppCompatActivity {
         String prediction = intent.getStringExtra("Prediction");
         if (prediction != null) {
             if (prediction.equals("Benign")) {
+                //If prediction is Benign, make Benign image & text visible.
                 TextView noCancer = findViewById(R.id.noCancer);
                 noCancer.setVisibility(View.VISIBLE);
 
                 ImageView benign = findViewById(R.id.benign);
                 benign.setVisibility(View.VISIBLE);
             } else {
+                //If prediction is Malignant, make Malignant image & text visible.
                 TextView cancer = findViewById(R.id.cancer);
                 cancer.setVisibility(View.VISIBLE);
 
@@ -37,10 +39,11 @@ public class PredictionActivity extends AppCompatActivity {
 
     }
 
+    //If user presses Search Doctors, Google maps will open with a query for nearby Dermatologists
     public void findDoctor(View view) {
-        Uri gmmIntentUri = Uri.parse("geo:0,0?q=cancer");
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=dermatologist");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(mapIntent);
+        startActivity(mapIntent); //Start intent to open google maps
     }
 }

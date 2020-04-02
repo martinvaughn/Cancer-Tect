@@ -24,20 +24,21 @@ public class AnalysisActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analysis);
         Intent intent = getIntent();
+        String filename = intent.getStringExtra("img"); //Get filename from the intent.
         bitmap = null;
 
-        String filename = intent.getStringExtra("img");
         try {
             FileInputStream is = this.openFileInput(filename);
-            bitmap = BitmapFactory.decodeStream(is);
+            bitmap = BitmapFactory.decodeStream(is); //Load local bitmap with bitmap from Main Activity.
             is.close();
-            displayImage(bitmap);
-            startNeuralNet();
+            displayImage(bitmap); //Display bitmap to user as NeuralNet loads
+            startNeuralNet(); //Begin Neural Network. Result will be returned with a runOnUIThread
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    //Display's the user Image back for confirmation of procedure.
     public void displayImage(Bitmap bitmap) {
         ImageView imageView = findViewById(R.id.skinImage);
         imageView.setImageBitmap(bitmap);
@@ -51,43 +52,27 @@ public class AnalysisActivity extends AppCompatActivity {
         t.start();
     }
 
+    //Allows prediction to be set from a runOnUIThread
     public void setPrediction(String prediction) {
         this.prediction = prediction;
     }
 
+    //Once Neural Network finishes, made the loading features invisible and the continue button visible.
     public void setVisibility() {
-        // change loading and button loading is not visible and button is visible
         ImageView loadingIcon = findViewById(R.id.loading);
         TextView loadingText = findViewById(R.id.loadingText);
         Button startP = findViewById(R.id.startP);
-        loadingIcon.setVisibility(View.GONE);
-        loadingText.setVisibility(View.GONE);
-        startP.setVisibility(View.VISIBLE);
+        loadingIcon.setVisibility(View.GONE); //Loading Icon now Invisible
+        loadingText.setVisibility(View.GONE); //Loading Text now Invisible
+        startP.setVisibility(View.VISIBLE); //Continue button now Visible
     }
 
+    //Start activity to display to the user our prediction
     public void startPrediction(View view) {
         Intent intent = new Intent(this, PredictionActivity.class);
         intent.putExtra("Prediction", prediction);
-        startActivity(intent);
+        startActivity(intent); //Start the prediction activity when Continue is clicked.
     }
 }
 
-
-
-/*************************************
- Bitmap bitmap = getYourInputImage();
- bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true);
-
- int batchNum = 0;
- float[][][][] input = new float[1][224][224][3];
- for (int x = 0; x < 224; x++) {
- for (int y = 0; y < 224; y++) {
- int pixel = bitmap.getPixel(x, y);
- // Normalize channel values to [-1.0, 1.0]. This requirement varies by
- // model. For example, some models might require values to be normalized
- // to the range [0.0, 1.0] instead.
- input[batchNum][x][y][0] = (Color.red(pixel) - 127) / 128.0f;
- input[batchNum][x][y][1] = (Color.green(pixel) - 127) / 128.0f;
- input[batchNum][x][y][2] = (Color.blue(pixel) - 127) / 128.0f;
- *********************************************/
 
